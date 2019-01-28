@@ -5,6 +5,8 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager Instance;
 	public string currentScene;
 
+	private bool button;
+
 	private void Awake(){
 		if (Instance == null){
 			Instance = this;
@@ -28,8 +30,9 @@ public class LevelManager : MonoBehaviour {
 		{
 			QuitRequest();
 		}
-		if (Input.GetButtonDown("Submit"))
+		if (Input.GetButtonDown("Submit") && currentScene != "Level 1")
 		{
+			button = true;
 			LoadlevelbyCurrentScene();
 		}
 	}
@@ -49,13 +52,17 @@ public class LevelManager : MonoBehaviour {
 				break;
 				
 		}
-		SoundManager.instance.SetButtonClip();	
 	}
 
 	public void LoadLevel (string name){
 		Debug.Log("Level load requested for: " + name);
 		SceneManager.LoadScene(name);
-		SoundManager.instance.SetButtonClip();
+		if (button)
+		{
+			SoundManager.instance.SetButtonClip();
+			button = false;
+		}
+
 	}
 	
 	public void QuitRequest () {
