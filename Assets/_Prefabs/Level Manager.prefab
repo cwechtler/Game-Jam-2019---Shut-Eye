@@ -51,4 +51,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b5d257e1e43f0742868b681eebdf10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentScene: 
+  webglQuitURL: https://cwechtler.github.io/Personal-WebSite/
