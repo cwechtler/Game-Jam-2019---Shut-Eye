@@ -3,7 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 	public static LevelManager Instance;
-	public string currentScene;
+
+	[SerializeField] private string webglQuitURL = "about:blank";
+	public string currentScene { get; private set; }
 
 	private bool button;
 
@@ -67,9 +69,13 @@ public class LevelManager : MonoBehaviour {
 	
 	public void QuitRequest () {
 		Debug.Log("Level Quit Request");
-		Application.Quit();
+		#if UNITY_WEBGL
+			Application.OpenURL(webglQuitURL);
+		#else
+			Application.Quit();
+		#endif
 	}
-	
+
 	public void LoadNextLevel() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		SoundManager.instance.SetButtonClip();

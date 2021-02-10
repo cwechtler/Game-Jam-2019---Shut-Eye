@@ -5,6 +5,9 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+# WebGL Templates
+[Aa]ssets/WebGLTemplates/
+
 # Visual Studio cache directory
 .vs/
 
